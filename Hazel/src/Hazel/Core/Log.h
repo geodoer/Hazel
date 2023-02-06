@@ -1,3 +1,6 @@
+/*
+ * øŒ≥Ã£∫006. »’÷æ
+ */
 #pragma once
 
 #include "Hazel/Core/Base.h"

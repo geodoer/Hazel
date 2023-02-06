@@ -1,3 +1,7 @@
+/*
+ * 课程：005. 程序入口点
+ *为客户端程序提供一个开箱即用的main函数
+ */
 #pragma once
 #include "Hazel/Core/Base.h"
 #include "Hazel/Core/Application.h"

@@ -1,3 +1,10 @@
+/*
+ * hzpch.h 预编译头文件
+ *  Precompiled Headers, 缩写成pch
+ *	只有使用MSVC作为编译器时，才需要预编译头文件
+ * \课程
+	010. 预编译头文件
+ */
 #pragma once
 
 #include "Hazel/Core/PlatformDetection.h"

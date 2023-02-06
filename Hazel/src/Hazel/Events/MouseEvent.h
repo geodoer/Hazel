@@ -1,3 +1,8 @@
+/*
+ * MouseEvent.h 鼠标类事件
+ * \课程
+	009. 实现事件系统
+ */
 #pragma once
 
 #include "Hazel/Events/Event.h"
@@ -5,6 +10,7 @@
 
 namespace Hazel {
 
+	//鼠标移动
 	class MouseMovedEvent : public Event
 	{
 	public:
@@ -27,6 +33,7 @@ namespace Hazel {
 		float m_MouseX, m_MouseY;
 	};
 
+	//鼠标滚动
 	class MouseScrolledEvent : public Event
 	{
 	public:
@@ -49,6 +56,7 @@ namespace Hazel {
 		float m_XOffset, m_YOffset;
 	};
 
+	//鼠标按钮基类
 	class MouseButtonEvent : public Event
 	{
 	public:
@@ -62,6 +70,7 @@ namespace Hazel {
 		MouseCode m_Button;
 	};
 
+	//按钮按下
 	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
@@ -78,6 +87,7 @@ namespace Hazel {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
+	//按钮松开
 	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:

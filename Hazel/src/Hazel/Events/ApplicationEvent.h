@@ -1,9 +1,15 @@
+﻿/*
+ * ApplicationEvent.h 应用的事件
+ * \课程
+	009. 实现事件系统
+ */
 #pragma once
 
 #include "Hazel/Events/Event.h"
 
 namespace Hazel {
 
+	//调整窗口高度和宽度
 	class WindowResizeEvent : public Event
 	{
 	public:
@@ -35,6 +41,7 @@ namespace Hazel {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
+	//时钟
 	class AppTickEvent : public Event
 	{
 	public:
@@ -44,6 +51,7 @@ namespace Hazel {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
+	//更新
 	class AppUpdateEvent : public Event
 	{
 	public:
@@ -53,6 +61,7 @@ namespace Hazel {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
+	//渲染
 	class AppRenderEvent : public Event
 	{
 	public:
