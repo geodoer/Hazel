@@ -9,7 +9,7 @@ workspace "Hazel"
 	{
 		"Debug",
 		"Release",
-		"Dist"
+		"Dist"		-- 更快的调试版本
 	}
 
 	solution_items

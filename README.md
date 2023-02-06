@@ -9,11 +9,17 @@ Hazel is primarily an early-stage interactive application and rendering engine f
 ## Getting Started
 Visual Studio 2017 or 2019 is recommended, Hazel is officially untested on other development environments whilst we focus on a Windows build.
 
+> 推荐VS2017、2019.
+
 <ins>**1. Downloading the repository:**</ins>
 
 Start by cloning the repository with `git clone --recursive https://github.com/TheCherno/Hazel`.
 
 If the repository was cloned non-recursively previously, use `git submodule update --init` to clone the necessary submodules.
+
+> 下载仓库  
+> `git clone --recursive https://github.com/TheCherno/Hazel`  
+> `git submodule update --init`
 
 <ins>**2. Configuring the dependencies:**</ins>
 
@@ -23,6 +29,14 @@ If the repository was cloned non-recursively previously, use `git submodule upda
 4. After downloading and unzipping the files, the [Win-GenProjects.bat](https://github.com/TheCherno/Hazel/blob/master/scripts/Win-GenProjects.bat) script file will get executed automatically, which will then generate a Visual Studio solution file for user's usage.
 
 If changes are made, or if you want to regenerate project files, rerun the [Win-GenProjects.bat](https://github.com/TheCherno/Hazel/blob/master/scripts/Win-GenProjects.bat) script file found in `scripts` folder.
+
+> 配置依赖（需要Python环境）  
+> 1. 运行`scripts/Setup.bat`
+> 2. 根据提示安装vulkan sdk
+> 3. 再次运行`scripts/Setup.bat`
+> 4. 脚本会自动运行`Win-GenProjects.bat`，构建VS工程  
+> 
+> 如果进行了更改，或者希望重新生成项目文件，请重新运行scripts文件夹中的Win-GenProjects.bat脚本文件。
 
 ***
 
