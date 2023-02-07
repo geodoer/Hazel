@@ -1,3 +1,8 @@
+﻿/*
+ * Application.h 应用程序
+ * \课程
+	011. Window抽象和GLFW
+ */
 #pragma once
 
 #include "Hazel/Core/Base.h"
@@ -34,12 +39,14 @@ namespace Hazel {
 		ApplicationCommandLineArgs CommandLineArgs;
 	};
 
+	//应用程序
 	class Application
 	{
 	public:
 		Application(const ApplicationSpecification& specification);
 		virtual ~Application();
 
+		//事件触发的回调函数
 		void OnEvent(Event& e);
 
 		void PushLayer(Layer* layer);
@@ -58,15 +65,17 @@ namespace Hazel {
 		void SubmitToMainThread(const std::function<void()>& function);
 	private:
 		void Run();
+		//窗体关闭的回调函数
 		bool OnWindowClose(WindowCloseEvent& e);
+		//窗体宽高改变的回调函数
 		bool OnWindowResize(WindowResizeEvent& e);
 
 		void ExecuteMainThreadQueue();
 	private:
 		ApplicationSpecification m_Specification;
-		Scope<Window> m_Window;
+		Scope<Window> m_Window;	//窗口
 		ImGuiLayer* m_ImGuiLayer;
-		bool m_Running = true;
+		bool m_Running = true;	//继续运行
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;

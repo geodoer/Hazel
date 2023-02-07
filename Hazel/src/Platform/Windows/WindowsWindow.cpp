@@ -1,4 +1,4 @@
-#include "hzpch.h"
+﻿#include "hzpch.h"
 #include "Platform/Windows/WindowsWindow.h"
 
 #include "Hazel/Core/Input.h"
@@ -38,6 +38,7 @@ namespace Hazel {
 	{
 		HZ_PROFILE_FUNCTION();
 
+		//将属性缓存下来
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -46,10 +47,11 @@ namespace Hazel {
 
 		if (s_GLFWWindowCount == 0)
 		{
+			//初始化窗口
 			HZ_PROFILE_SCOPE("glfwInit");
 			int success = glfwInit();
 			HZ_CORE_ASSERT(success, "Could not initialize GLFW!");
-			glfwSetErrorCallback(GLFWErrorCallback);
+			glfwSetErrorCallback(GLFWErrorCallback); //设置Error回调函数
 		}
 
 		{
@@ -58,6 +60,8 @@ namespace Hazel {
 			if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
 				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
 		#endif
+
+			//创建窗体
 			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 			++s_GLFWWindowCount;
 		}
@@ -65,18 +69,21 @@ namespace Hazel {
 		m_Context = GraphicsContext::Create(m_Window);
 		m_Context->Init();
 
-		glfwSetWindowUserPointer(m_Window, &m_Data);
+		glfwSetWindowUserPointer(m_Window, &m_Data); //将WindowData挂载在m_Window的类中，方便在m_Window中使用
 		SetVSync(true);
 
+		//Hazel Windows平台中的窗口使用GLFW创建窗体，一些窗体的事件实际上都是由GLFW管理的
+		// 因此我们要设置一些回调函数，当窗体触发了某些条件，GLFW就会调用我们设置的函数
 		// Set GLFW callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
 		{
+			//window即m_Window，我们可以从中拿到m_Data
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			data.Width = width;
 			data.Height = height;
 
-			WindowResizeEvent event(width, height);
-			data.EventCallback(event);
+			WindowResizeEvent event(width, height);	//创建Hazel窗口高宽变换事件
+			data.EventCallback(event);				//并调用回调函数
 		});
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
@@ -176,8 +183,8 @@ namespace Hazel {
 	{
 		HZ_PROFILE_FUNCTION();
 
-		glfwPollEvents();
-		m_Context->SwapBuffers();
+		glfwPollEvents();			//轮询事件
+		m_Context->SwapBuffers();	//交换缓冲区
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
@@ -189,6 +196,7 @@ namespace Hazel {
 		else
 			glfwSwapInterval(0);
 
+		//无法从glfw中获取是否开启，因此缓存下来
 		m_Data.VSync = enabled;
 	}
 

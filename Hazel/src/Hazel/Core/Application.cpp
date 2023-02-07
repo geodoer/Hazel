@@ -1,4 +1,4 @@
-#include "hzpch.h"
+﻿#include "hzpch.h"
 #include "Hazel/Core/Application.h"
 
 #include "Hazel/Core/Log.h"
@@ -26,7 +26,7 @@ namespace Hazel {
 			std::filesystem::current_path(m_Specification.WorkingDirectory);
 
 		m_Window = Window::Create(WindowProps(m_Specification.Name));
-		m_Window->SetEventCallback(HZ_BIND_EVENT_FN(Application::OnEvent));
+		m_Window->SetEventCallback(HZ_BIND_EVENT_FN(Application::OnEvent)); //设置Event触发的回调函数
 
 		Renderer::Init();
 
@@ -74,14 +74,15 @@ namespace Hazel {
 	{
 		HZ_PROFILE_FUNCTION();
 
-		EventDispatcher dispatcher(e);
+		//创建事件调度器，轮询所有事件，一个一个处理
+		EventDispatcher dispatcher(e); 
 		dispatcher.Dispatch<WindowCloseEvent>(HZ_BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(HZ_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
 		{
 			if (e.Handled) 
-				break;
+				break; //如果被标记为已处理，则不继续下去
 			(*it)->OnEvent(e);
 		}
 	}

@@ -23,7 +23,9 @@
 
 #define BIT(x) (1 << x)
 
+//将成员函数转成std::function
 #define HZ_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
+//#define HZ_BIND_EVENT_FN(fn) std::bind(&x, this, std::placeholders::_1)
 
 namespace Hazel {
 

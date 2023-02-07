@@ -1,3 +1,8 @@
+﻿/*
+ * Window.h 窗口的抽象表示
+ * \课程
+	011. Window抽象和GLFW
+ */
 #pragma once
 
 #include "Hazel/Core/Base.h"
@@ -7,6 +12,7 @@
 
 namespace Hazel {
 
+	//窗口属性
 	struct WindowProps
 	{
 		std::string Title;
@@ -22,9 +28,11 @@ namespace Hazel {
 	};
 
 	// Interface representing a desktop system based Window
+	// 窗口的抽象基类，与平台无关，由Application调用（不应该依赖于Application）
 	class Window
 	{
 	public:
+		//事件回调函数
 		using EventCallbackFn = std::function<void(Event&)>;
 
 		virtual ~Window() = default;

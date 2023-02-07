@@ -1,8 +1,13 @@
 
 -- Hazel Dependencies
+-- Hazel的依赖项信息，统一管理，方便各个模块使用
+-- 优化
+--  1. IncludeDir、LibDir、Lib应由各个模块各自管理，写在自己的premake5.lua中
+--  2. 部分库没有实现跨平台，硬编码Windows的*.lib文件
 
 VULKAN_SDK = os.getenv("VULKAN_SDK")
 
+-- Include目录
 IncludeDir = {}
 IncludeDir["stb_image"] = "%{wks.location}/Hazel/vendor/stb_image"
 IncludeDir["yaml_cpp"] = "%{wks.location}/Hazel/vendor/yaml-cpp/include"
@@ -19,11 +24,13 @@ IncludeDir["shaderc"] = "%{wks.location}/Hazel/vendor/shaderc/include"
 IncludeDir["SPIRV_Cross"] = "%{wks.location}/Hazel/vendor/SPIRV-Cross"
 IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
 
+-- Lib目录
 LibraryDir = {}
 
 LibraryDir["VulkanSDK"] = "%{VULKAN_SDK}/Lib"
 LibraryDir["mono"] = "%{wks.location}/Hazel/vendor/mono/lib/%{cfg.buildcfg}"
 
+-- Lib文件
 Library = {}
 Library["mono"] = "%{LibraryDir.mono}/libmono-static-sgen.lib"
 

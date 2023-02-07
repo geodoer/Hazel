@@ -7,6 +7,7 @@ project "Hazel"
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
+	-- 预编译头文件
 	pchheader "hzpch.h"
 	pchsource "src/hzpch.cpp"
 
@@ -49,7 +50,7 @@ project "Hazel"
 
 	links
 	{
-		"Box2D",
+		"Box2D",	--以Target名称链接一个库
 		"GLFW",
 		"Glad",
 		"ImGui",
