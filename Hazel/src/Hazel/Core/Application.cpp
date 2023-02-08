@@ -79,6 +79,7 @@ namespace Hazel {
 		dispatcher.Dispatch<WindowCloseEvent>(HZ_BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(HZ_BIND_EVENT_FN(Application::OnWindowResize));
 
+		// 先点击到栈顶，从栈顶到栈底
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
 		{
 			if (e.Handled) 
@@ -106,6 +107,7 @@ namespace Hazel {
 				{
 					HZ_PROFILE_SCOPE("LayerStack OnUpdate");
 
+					// 先渲染栈底，再渲染栈顶，栈顶覆盖栈底的渲染结果
 					for (Layer* layer : m_LayerStack)
 						layer->OnUpdate(timestep);
 				}

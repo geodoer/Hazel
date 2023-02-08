@@ -2,6 +2,7 @@
 
 #include "Hazel.h"
 
+// LayerµÄÊ¾Àý
 class ExampleLayer : public Hazel::Layer
 {
 public:
