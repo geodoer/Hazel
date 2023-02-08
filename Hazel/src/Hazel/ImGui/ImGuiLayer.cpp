@@ -59,8 +59,8 @@ namespace Hazel {
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 
 		// Setup Platform/Renderer bindings
-		ImGui_ImplGlfw_InitForOpenGL(window, true);
-		ImGui_ImplOpenGL3_Init("#version 410");
+		ImGui_ImplGlfw_InitForOpenGL(window, true); //ImGui Glfw初始化
+		ImGui_ImplOpenGL3_Init("#version 410");		//初始化OpenGL
 	}
 
 	void ImGuiLayer::OnDetach()
@@ -102,7 +102,7 @@ namespace Hazel {
 
 		// Rendering
 		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());	//获得绘制数据，并绘制
 
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 		{

@@ -58,6 +58,8 @@ namespace Hazel {
 
 		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 
+		// 无论在哪，我们都可能访问Application，因为它有重要信息
+		// 因此，我们为Application设计成单例
 		static Application& Get() { return *s_Instance; }
 
 		const ApplicationSpecification& GetSpecification() const { return m_Specification; }
